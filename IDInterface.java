@@ -6,4 +6,6 @@ public interface IDInterface {
 	 * getID() returns ID of either user or user group */
 	public String getID();
 	
+	public String toString();
+	
 }

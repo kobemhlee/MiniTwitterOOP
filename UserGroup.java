@@ -15,6 +15,11 @@ public class UserGroup implements IDInterface {
 	}
 	
 	@Override
+	public String toString() {
+		return groupID;
+	}
+	
+	@Override
 	public String getID() {
 		return groupID;
 	}
