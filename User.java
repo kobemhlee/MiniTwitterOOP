@@ -67,8 +67,8 @@ public class User extends Subject implements IDInterface, Observer {
 	}
 	
 	public void addTweet(String newMsg) {
-		newsFeed.add(newMsg);
-		tweets.add(newMsg);
+		newsFeed.add(this.userID + ": "+newMsg);
+		tweets.add(this.userID + ": "+newMsg);
 		this.notifyObservers();
 	}
 	
