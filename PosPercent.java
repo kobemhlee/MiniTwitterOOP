@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 public class PosPercent implements AdminDataInterface {
 	
 	@Override

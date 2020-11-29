@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 import java.util.ArrayList;
 
 /* User group is Composite within composite design pattern */

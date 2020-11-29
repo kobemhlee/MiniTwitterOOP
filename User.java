@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 import java.util.ArrayList;
 
 /* User is a leaf within composite design pattern */ 

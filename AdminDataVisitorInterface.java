@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 public interface AdminDataVisitorInterface {
 		
 	/* Visitor pattern interface */ 

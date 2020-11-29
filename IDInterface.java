@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 public interface IDInterface {
 	
 	/* Serves as component within composite design pattern 

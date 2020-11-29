@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 public class UserTotal implements AdminDataInterface {
 	
 	@Override

@@ -1,5 +1,3 @@
-package MiniTwitterA2;
-
 public interface ControlPanel {
 
 	/* Outputs total number of users across Mini Twitter */ 
