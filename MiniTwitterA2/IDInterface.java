@@ -8,4 +8,7 @@ public interface IDInterface {
 	
 	public String toString();
 	
+	public long getCreationTime();
+	
+	public long getLastUpdatedTime();
 }

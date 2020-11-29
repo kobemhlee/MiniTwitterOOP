@@ -9,12 +9,15 @@ public class User extends Subject implements IDInterface, Observer {
 	private String userID;
 	private ArrayList<User> followers, following;
 	private ArrayList<String> newsFeed, tweets;
+	private long creationTime;
+	private long lastUpdatedTime;
 	
 	/* userID variable name will be same name as ID
 	 * FE: User with id "jake123" is jake123 */
 	
 	public User(String userID) {
 		this.userID = userID;
+		this.creationTime = System.currentTimeMillis();  
 		this.followers = new ArrayList<User>();
 		this.following = new ArrayList<User>();
 		this.newsFeed = new ArrayList<String>();
@@ -32,8 +35,19 @@ public class User extends Subject implements IDInterface, Observer {
 		return userID;
 	}
 	
+	@Override
+	public long getCreationTime() {
+		return creationTime;
+	}
+	
+	@Override
+	public long getLastUpdatedTime() {
+		return lastUpdatedTime;
+	}
+	
 	/* Function to add follower to user */
 	public void addFollowedBy(User newUser) {		
+		lastUpdatedTime = System.currentTimeMillis(); 
 		if (!followers.contains(newUser)) {
 			followers.add(newUser);
 			this.attach(newUser);
@@ -45,6 +59,7 @@ public class User extends Subject implements IDInterface, Observer {
 	
 	/* Function to allow user to add a followed user */
 	public void addFollowing(User newUser) { 
+		lastUpdatedTime = System.currentTimeMillis(); 
 		if (!following.contains(newUser)) {
 			following.add(newUser);
 			this.attach(newUser);
@@ -67,6 +82,7 @@ public class User extends Subject implements IDInterface, Observer {
 	}
 	
 	public void addTweet(String newMsg) {
+		lastUpdatedTime = System.currentTimeMillis(); 
 		newsFeed.add(this.userID + ": "+newMsg);
 		tweets.add(this.userID + ": "+newMsg);
 		this.notifyObservers();
@@ -88,6 +104,7 @@ public class User extends Subject implements IDInterface, Observer {
 
 	@Override
 	public void update(Subject subject) {
+		lastUpdatedTime = System.currentTimeMillis(); 
 		if (subject instanceof User) {
 			if (!((User)subject).getID().equals(this.getID())){
 				newsFeed.add(((User)subject).getTweet());	

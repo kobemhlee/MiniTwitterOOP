@@ -1,6 +1,7 @@
 package MiniTwitterA2;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class AdminControlPanel implements ControlPanel, Observer {
 
@@ -148,5 +149,46 @@ public class AdminControlPanel implements ControlPanel, Observer {
 			System.out.println("Error!");
 		}
 		
+	}
+	
+	public boolean validUsers() {
+		HashSet<String> temp = new HashSet<String>();
+		for (User user: users) {
+			if (containsSpaces(user.getID()) || temp.contains(user.getID())) {
+				return false;
+			}
+			else {
+				temp.add(user.getID());
+			}
+		}
+		return true;
+	}
+	
+	public boolean containsSpaces(String val) {
+		for (int i = 0; i < val.length(); i++) {
+			if (val.charAt(i)==' ') {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public String getLastUpdatedUser() {
+		User last;
+		
+		if (users.size() > 0) {
+			last = users.get(0);
+			
+			for (User user: users) {
+				if (user.getLastUpdatedTime() > last.getLastUpdatedTime()) {
+					last = user;
+				}
+			}
+		}
+		else {
+			return "N/A";
+		}
+		
+		return last.getID();
 	}
 }

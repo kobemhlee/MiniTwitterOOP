@@ -36,6 +36,8 @@ public class Driver implements ActionListener {
 	JTextArea tweetTA;
 	JTextArea feedTA;
 	JButton updateButton;
+	JButton buttonValidate;
+	JButton buttonShowLastUpdated;
 	
 	public static void main(String[] args) {
 		new Driver();
@@ -76,36 +78,42 @@ public class Driver implements ActionListener {
 		buttonShowUserTotal.addActionListener(this);
 		buttonShowMsgTotal = new JButton("Show Message Total");
 		buttonShowMsgTotal.addActionListener(this);
+		buttonShowLastUpdated = new JButton("Last Updated User");
+		buttonShowLastUpdated.addActionListener(this);
 		
-		GridLayout layout1 = new GridLayout(5,1);
-		layout1.setHgap(20);
-		layout1.setVgap(20);
+		GridLayout layout1 = new GridLayout(6,1);
+		layout1.setHgap(10);
+		layout1.setVgap(10);
 		panel2.setLayout(layout1);
 		panel2.add(userIDText);
 		panel2.add(groupIDText);
 		panel2.add(buttonUserView);
+		panel2.add(buttonShowLastUpdated);
 		panel2.add(emptyLabel);
 		panel2.add(buttonShowUserTotal);
 		panel2.add(buttonShowMsgTotal);
+
 		
 		/* Column Three (Panel Three) */
 		buttonAddUser = new JButton("Add User");
 		buttonAddUser.addActionListener(this);
 		buttonAddGroup = new JButton("Add Group");
 		buttonAddGroup.addActionListener(this);
+		buttonValidate = new JButton("Validate");
+		buttonValidate.addActionListener(this);
 		buttonShowGroupTotal = new JButton("Show Group Total");
 		buttonShowGroupTotal.addActionListener(this);
 		buttonShowPosTotal = new JButton("Show Positive Percentage");
 		buttonShowPosTotal.addActionListener(this);
 
 		
-		GridLayout layout2 = new GridLayout(5,1);
+		GridLayout layout2 = new GridLayout(6,1);
 		layout2.setHgap(12);
 		layout2.setVgap(12);
 		panel3.setLayout(layout2);
 		panel3.add(buttonAddUser);
 		panel3.add(buttonAddGroup);
-		panel3.add(emptyLabel);
+		panel3.add(buttonValidate);
 		panel3.add(emptyLabel);
 		panel3.add(buttonShowGroupTotal);
 		panel3.add(buttonShowPosTotal);
@@ -223,6 +231,17 @@ public class Driver implements ActionListener {
 			int temp = controlPanel.findIndexOfUser(currentNode.toString());
 			
 			feedTA.setText("Feed:\n" + controlPanel.users.get(temp).printFeed());
+		}
+		else if (e.getSource()==buttonValidate) {
+			if (controlPanel.validUsers()) {
+				JOptionPane.showMessageDialog(frame,"" + "Users are valid.");  
+			}
+			else {
+				JOptionPane.showMessageDialog(frame,"" + "Users are not valid!");  
+			}
+		}
+		else if (e.getSource()==buttonShowLastUpdated) {
+			JOptionPane.showMessageDialog(frame,"" + "Last Updated User: " + controlPanel.getLastUpdatedUser());  
 		}
 		
 	}

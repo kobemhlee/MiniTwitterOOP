@@ -8,10 +8,13 @@ public class UserGroup implements IDInterface {
 
 	private String groupID;
 	private ArrayList<User> users;
+	private long creationTime;
+	private long lastUpdatedTime;
 	
 	public UserGroup(String groupID) {
 		this.groupID = groupID;
 		this.users = new ArrayList<User>();
+		this.creationTime = System.currentTimeMillis(); 
 	}
 	
 	@Override
@@ -24,6 +27,16 @@ public class UserGroup implements IDInterface {
 		return groupID;
 	}
 	
+	@Override
+	public long getCreationTime() {
+		return creationTime;
+	}
+	
+	@Override
+	public long getLastUpdatedTime() {
+		return lastUpdatedTime;
+	}
+	
 	public void getUserIDs() {
 		for (User user:users) {
 			System.out.println(user.getID());
@@ -31,6 +44,8 @@ public class UserGroup implements IDInterface {
 	}
 	
 	public void addNewUser(User newUser) {
+		lastUpdatedTime = System.currentTimeMillis(); 
+		
 		// Make sure newUser does not already exist 
 		boolean dup = false;
 		for (int i = 0; i < users.size(); i++) {
