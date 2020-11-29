@@ -17,7 +17,8 @@ public class User extends Subject implements IDInterface, Observer {
 	
 	public User(String userID) {
 		this.userID = userID;
-		this.creationTime = System.currentTimeMillis();  
+		this.creationTime = System.currentTimeMillis(); 
+		this.lastUpdatedTime = System.currentTimeMillis();  
 		this.followers = new ArrayList<User>();
 		this.following = new ArrayList<User>();
 		this.newsFeed = new ArrayList<String>();
