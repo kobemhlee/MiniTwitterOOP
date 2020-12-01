@@ -114,7 +114,7 @@ public class AdminControlPanel implements ControlPanel, Observer {
 	public void incrementTweetsCheck(String str) {
 		this.numTweets++;
 		
-		if (str.equals("good")) {
+		if (str.contains("good") || str.contains("great") || str.contains("best")) {
 			this.numPosTweets++;
 		}
 	}
@@ -126,7 +126,7 @@ public class AdminControlPanel implements ControlPanel, Observer {
 	@Override
 	public String getTotalPositiveTweets() {
 		// Make sure to format as percentage
-		return "There are " + (double)(this.numPosTweets*100)/this.numTweets + "% positive tweets total.";
+		return "Positive Tweet Percentage: " + (int)(this.numPosTweets*100)/this.numTweets + "%";
 	}
 	
 	public void setPositiveTweets(int numPosTweets) {
@@ -139,7 +139,7 @@ public class AdminControlPanel implements ControlPanel, Observer {
 		if (subject instanceof User) {
 			numTweets++;
 			
-			if (((User)subject).getTweet().equals("good")) {
+			if (((User)subject).getTweet().contains("good")) {
 				numPosTweets++;
 			}
 		}
