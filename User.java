@@ -114,4 +114,22 @@ public class User extends Subject implements IDInterface, Observer {
 		}
 	}
 	
+	public String addUserView() {
+		long second = (creationTime / 1000) % 60;
+		long minute = (creationTime / (1000 * 60)) % 60;
+		long hour = (creationTime / (1000 * 60 * 60)) % 24;
+		
+
+		String creationTimeUpdated = String.format("%02d:%02d:%02d", ((hour+4)%24), minute, second);
+		
+		second = (lastUpdatedTime / 1000) % 60;
+		minute = (lastUpdatedTime / (1000 * 60)) % 60;
+		hour = (lastUpdatedTime / (1000 * 60 * 60)) % 24;
+
+		String creationTimeUpdated2 = String.format("%02d:%02d:%02d", ((hour+4)%24), minute, second);
+		
+		
+		return ("Created time: " + creationTimeUpdated + "\nLast updated time: " + creationTimeUpdated2);
+	}
+	
 }

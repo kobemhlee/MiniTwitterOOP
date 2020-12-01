@@ -34,9 +34,11 @@ public class Driver implements ActionListener {
 	JTextArea currentlyFollowingTA;
 	JTextArea tweetTA;
 	JTextArea feedTA;
+	JTextArea timeTA;
 	JButton updateButton;
 	JButton buttonValidate;
 	JButton buttonShowLastUpdated;
+	JButton lastUpdatedButton;
 	
 	public static void main(String[] args) {
 		new Driver();
@@ -88,7 +90,6 @@ public class Driver implements ActionListener {
 		panel2.add(groupIDText);
 		panel2.add(buttonUserView);
 		panel2.add(buttonShowLastUpdated);
-		panel2.add(emptyLabel);
 		panel2.add(buttonShowUserTotal);
 		panel2.add(buttonShowMsgTotal);
 
@@ -98,8 +99,12 @@ public class Driver implements ActionListener {
 		buttonAddUser.addActionListener(this);
 		buttonAddGroup = new JButton("Add Group");
 		buttonAddGroup.addActionListener(this);
-		buttonValidate = new JButton("Validate");
+		buttonValidate = new JButton("Validate Usernames");
 		buttonValidate.addActionListener(this);
+		
+		lastUpdatedButton = new JButton("Last Updated User");
+		lastUpdatedButton.addActionListener(this);
+		
 		buttonShowGroupTotal = new JButton("Show Group Total");
 		buttonShowGroupTotal.addActionListener(this);
 		buttonShowPosTotal = new JButton("Show Positive Percentage");
@@ -107,12 +112,12 @@ public class Driver implements ActionListener {
 
 		
 		GridLayout layout2 = new GridLayout(6,1);
-		layout2.setHgap(12);
-		layout2.setVgap(12);
+		layout2.setHgap(10);
+		layout2.setVgap(10);
 		panel3.setLayout(layout2);
 		panel3.add(buttonAddUser);
 		panel3.add(buttonAddGroup);
-		panel3.add(buttonValidate);
+		panel3.add(lastUpdatedButton);
 		panel3.add(emptyLabel);
 		panel3.add(buttonShowGroupTotal);
 		panel3.add(buttonShowPosTotal);
@@ -179,6 +184,7 @@ public class Driver implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==buttonUserView) {
+	    	controlPanel.printUserTimes(currentNode.toString());
 	    	displayUserViewGUI(currentNode.toString());
 		}
 		else if (e.getSource()==buttonShowUserTotal) {
@@ -325,7 +331,6 @@ public class Driver implements ActionListener {
 		feedTA.setEditable(false);
 		feedTA.append("Feed:");
 		int temp = controlPanel.findIndexOfUser(currentNode.toString());
-		
 		feedTA.setText("Feed:\n" + controlPanel.users.get(temp).printFeed());
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 40;      //make this component tall
@@ -337,6 +342,20 @@ public class Driver implements ActionListener {
 		updateButton = new JButton("Update");
 		updateButton.addActionListener(this);
 		innerPanel2.add(updateButton);
+		
+		
+		// Add functionality to check update/creation time
+		timeTA = new JTextArea(2, 20);
+		JScrollPane scrollPane3 = new JScrollPane(timeTA); 
+		timeTA.setEditable(false);
+		index = controlPanel.findIndexOfUser(currentNode.toString());
+		timeTA.setText(controlPanel.users.get(index).addUserView());
+		c.fill = GridBagConstraints.HORIZONTAL;  
+		c.weightx = 0.0;
+		c.gridwidth = 3;
+		c.gridx = 0;
+		c.gridy = 2;
+		innerPanel2.add(scrollPane3, c);
 		 
 		panel.add(innerPanel2);
 		

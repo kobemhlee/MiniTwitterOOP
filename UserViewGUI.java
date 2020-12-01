@@ -20,7 +20,7 @@ public class UserViewGUI implements ActionListener{
 
 		
 		/* Main Panel */
-		panel.setBorder(BorderFactory.createEmptyBorder(100, 140, 100, 140));
+		panel.setBorder(BorderFactory.createEmptyBorder(200, 240, 200, 240));
         
 		GridBagConstraints c = new GridBagConstraints();
 		JButton button;
@@ -94,6 +94,7 @@ public class UserViewGUI implements ActionListener{
 		innerPanel2.add(scrollPane2, c);
 		 
 		panel.add(innerPanel2);
+		
 		
 		/* Frame */
 		frame.add(panel, BorderLayout.CENTER);

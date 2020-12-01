@@ -189,4 +189,16 @@ public class AdminControlPanel implements ControlPanel, Observer {
 		
 		return last.getID();
 	}
+	
+	public String printUserTimes(String userName) {
+		for (User user: users) {
+			if (user.getID().equals(userName)) {
+				return user.addUserView();
+			}
+			else {
+				return "N/A";
+			}
+		}
+		return "N/A";
+	}
 }
