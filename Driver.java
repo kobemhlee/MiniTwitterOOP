@@ -117,7 +117,7 @@ public class Driver implements ActionListener {
 		panel3.setLayout(layout2);
 		panel3.add(buttonAddUser);
 		panel3.add(buttonAddGroup);
-		panel3.add(lastUpdatedButton);
+		panel3.add(buttonValidate);
 		panel3.add(emptyLabel);
 		panel3.add(buttonShowGroupTotal);
 		panel3.add(buttonShowPosTotal);
